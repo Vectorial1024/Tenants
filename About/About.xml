@@ -1,13 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>Tenants</name>
-	<author>LimeTreeSnake</author>
-	<supportedVersions>
-	<li>1.0</li>
-	</supportedVersions>
+  <name>Tenants (Continued)</name>
+  <packageId>Mlie.Tenants</packageId>
+  <author>LimeTreeSnake</author>
+  <url>https://github.com/emipa606/Tenants</url>
+  <supportedVersions>
+    <li>1.0</li>
+    <li>1.1</li>
+    <li>1.2</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+  </loadAfter>
+  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+Update of LimeTreeSnakes mod
+https://steamcommunity.com/sharedfiles/filedetails/?id=1854879867
+
+[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+
+[table]
+    [tr]
+        [td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+        [td][url=https://github.com/emipa606/Tenants][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+    [/tr]
+[/table]
 	
-	<description>
--License-
-You may use this code as however you want. However, do let me know and give credits due if you do as I'd love to hear about what you've created with it! :)
-	</description>
+[img]https://i.imgur.com/NOW7jU1.png[/img]
+[h1]With the Royalty expansion, I consider tenants as they are now, Obsolete.[/h1]
+[h2]Thanks a lot for your support and await my new ideas![/h2]
+
+[img]https://i.imgur.com/VrsndzR.gif[/img]
+
+[h1]Description[/h1]
+This mod was inspired by [url=https://steamcommunity.com/sharedfiles/filedetails/?id=753498552]Orion's Hospitality[/url] and my desire to have longer-term interations with NPC colonists. This is not intended as a replacement for Hospitality; Hospitality enhances the visitor system in Rimworld while Tenants are more like regular colonists that simply have restrictions on what they do. Both mods work together just fine!
+ 
+Tenants are colonists that you cannot directly control or assign to tasks. So long as you have a regular colonists present, they can randomly offer to make a contract to stay at your colony. If you prove to be a good host, they may ask to stay longer. If you mistreat them, they might leave or worse!
+Couriers are responsible for delivering silver and they spawn randomly. However, they can be called for through the comms console for a small fee.
+ 
+[h1]Features[/h1]
+[list]
+[*]Non-controllable tenant colonists that pay you for being able to live in your colony.
+[*]Invite tenants to stay at your colony via the Comms Console.
+[*]Tenants may ask to extend their contract.
+[*]Happy tenants may ask to join your colony.
+[*]Couriers to deliver money. This feature will be further enhanced.
+[*]A mailbox(misc) building requirement to have the events spawning.
+[*]Evicting a tenant will receive in no money paid.
+[*]Mistreating tenants may result in future consequences.
+[*]Tenant that don't have the colony's best interest in mind.
+[*]New Tenant tab to manage your tenants!
+[*]Customizable mod settings!
+[/list]
+ 
+[h1]FAQ and Compatibility and Known Issues[/h1]
+[list]
+[*]This mod can be safely added mid-save.
+[*]This mod should not cause any issues if removed mid-game; any tenants should become regular colonists. Please let me know if something breaks!
+[*]Tenants will occasionally take your stuff. This is normal, however you can restrict their clothing, food and drug options by accessing the tenants tab.
+[*] Incompatible with -[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1890377807]Preemptive Strike[/url]
+[*]There might be strange behaviors with tenants and equipment if you use [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1631756268]Combat Extended[/url].
+[*]Tenants riding animals from [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1216999901]Giddy up[/url], upon contract end leaves with said animal.
+[*]Tenants can become mayors with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1552507180]Psychology[/url], this is awesome. 
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1617282896]Better Pawn Control[/url] has a minor conflict where tenants are reassigned to first option for food, drugs and apparel in the list of restrictions.
+[*][O21] vehicle framework 
+
+[/list]
+ 
+[h1]Links[/h1]
+[url=https://ludeon.com/forums/index.php?topic=49501.0]Ludeon[/url]
+[url=https://github.com/LimeTreeSnake/Tenants]GitHub[/url]
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1854879867]Steam Workshop[/url]
+[url=https://discord.gg/x2Xn7Wj]Discord[/url]
+ 
+[h1]Patreon[/h1]
+I created a [url=https://www.patreon.com/LimeTreeSnake]Patreon account[/url] since some people have asked for a way to support me!
+ 
+[h1]Special Thanks to[/h1]
+[list]
+[*]Pardeike: cause of his work on Harmony.
+[*]Orion: For his Hospitality mod.
+[*]Chicken Plucker: For the lovely images!
+[*]Aelanna: For the language help!
+[*]OskarPotocki: For his art! 3
+[/list]
+ 
+[h1]Updates[/h1]
+2019-11-10
+- Broadcast is not initially set to true.
+- Mod settings updated.
+- Wanted pawns are no longer wanted by your faction.
+- Courier system where money is delivered through couriers instead of spawning randomly.
+- A mailbox to recieve tenancy payments.
+- Lowered chance for bounty hunters.
+- Asynchronous relations should be fixed.
+
+ 
+[h1]License[/h1]
+You may use this code as however you want. However, do let me know and give credits due if you do as I'd love to hear about what you've created with it! :)</description>
 </ModMetaData>
