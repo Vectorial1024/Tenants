@@ -7,7 +7,7 @@ using System;
 
 namespace Tenants
 {
-    internal class TenantsSettings : ModSettings
+    public class TenantsSettings : ModSettings
     {
         #region Fields
         private static readonly List<string> availableRaces = new List<string>() { "Human" };
@@ -28,6 +28,7 @@ namespace Tenants
         private static float r = 127f, g = 63f, b = 191f;
         private static Color color = new Color(r / 255f, g / 255f, b / 255f);
         private static readonly float levelOfHappinessToWork = 70f;
+        private static readonly bool gastronomyGuest = false;
         #endregion Fields
         #region Properties
         public List<string> AvailableRaces = availableRaces.Count > 0 ? availableRaces.ListFullCopy() : new List<string>();
@@ -47,6 +48,7 @@ namespace Tenants
         public float SimpleClothingMin = simpleClothingMin;
         public float SimpleClothingMax = simpleClothingMax;
         public float CourierCost = courierCost;
+        public bool GastronomyGuest = gastronomyGuest;
         public string Filter { get; set; }
         public float R { get => r; set { r = value; color = new Color(r / 255, g / 255, b / 255); } }
         public float G { get => g; set { g = value; color = new Color(r / 255, g / 255, b / 255); } }
@@ -79,6 +81,7 @@ namespace Tenants
             Scribe_Values.Look(ref g, "G", g);
             Scribe_Values.Look(ref b, "B", b);
             Scribe_Values.Look(ref LevelOfHappinessToWork, "LevelOfHappinessToWork", levelOfHappinessToWork);
+            Scribe_Values.Look(ref GastronomyGuest, "GastronomyGuest", gastronomyGuest);
         }
         internal void Reset()
         {
@@ -96,6 +99,7 @@ namespace Tenants
             SimpleClothing = simpleClothing;
             SimpleClothingMin = simpleClothingMin;
             SimpleClothingMax = simpleClothingMax;
+            GastronomyGuest = gastronomyGuest;
         }
     }
     internal static class SettingsHelper
@@ -109,8 +113,12 @@ namespace Tenants
     public class ModMain : Mod
     {
         private readonly TenantsSettings settings;
+
+        public static ModMain instance;
+        
         public ModMain(ModContentPack content) : base(content)
         {
+            instance = this;
             settings = GetSettings<TenantsSettings>();
             SettingsHelper.LatestVersion = settings;
         }
@@ -120,6 +128,10 @@ namespace Tenants
         }
         public static Vector2 scrollPosition = Vector2.zero;
 
+        public bool GetGastronomyGuestSetting()
+        {
+            return settings.GastronomyGuest;
+        }
 
         public override void DoSettingsWindowContents(Rect inRect)
         {
@@ -172,6 +184,13 @@ namespace Tenants
                 }
                 list.Gap();
                 list.GapLine();
+                if (ModLister.GetActiveModWithIdentifier("Orion.Gastronomy") != null)
+                {
+                    list.Label("Gastronomy settings");
+                    list.CheckboxLabeled("Should Tennants count as guests?", ref settings.GastronomyGuest, "If checked Tennants count as guests, if unchecked they count as colonists");
+                    list.Gap();
+                    list.GapLine();
+                }
                 float R = settings.R, G = settings.G, B = settings.B;
                 string buffer1 = R.ToString(), buffer2 = G.ToString(), buffer3 = B.ToString();
                 list.Label("RGB value for tenants name: <color=#" + ColorUtility.ToHtmlStringRGB(settings.Color) + ">" + "Color" + "</color>");
