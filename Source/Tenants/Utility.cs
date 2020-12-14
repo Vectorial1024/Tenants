@@ -178,6 +178,10 @@ namespace Tenants
                 }
 
                 Faction faction = FactionUtility.DefaultFactionFrom(random.defaultFactionType);
+                if(faction.def.pawnGroupMakers.NullOrEmpty())
+                {
+                    continue;
+                }
                 newTenant = PawnGenerator.GeneratePawn(random, faction);
                 if (newTenant != null && !newTenant.Dead && !newTenant.IsDessicated() && !newTenant.AnimalOrWildMan())
                 {
