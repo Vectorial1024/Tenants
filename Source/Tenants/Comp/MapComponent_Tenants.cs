@@ -1,8 +1,8 @@
-﻿using RimWorld;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Verse;
 
-namespace Tenants {
+namespace Tenants
+{
     public class MapComponent_Tenants : MapComponent {
         #region Fields
         private bool broadcast = false;

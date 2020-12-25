@@ -1,8 +1,8 @@
-﻿using RimWorld;
-using Verse;
+﻿using Verse;
 using System.Collections.Generic;
 
-namespace Tenants {
+namespace Tenants
+{
     public class Courier : ThingComp {
         public bool isCourier = false;
         public List<ThingDef> items = new List<ThingDef>();

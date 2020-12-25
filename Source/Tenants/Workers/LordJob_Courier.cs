@@ -1,12 +1,11 @@
 ﻿using RimWorld;
-using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using System.Linq;
 using System.Text;
 
-namespace Tenants {
+namespace Tenants
+{
     public class LordJob_CourierDeliver : LordJob {
         Thing Mailbox;
 

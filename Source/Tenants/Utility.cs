@@ -1,13 +1,10 @@
 ﻿using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Verse;
-using Verse.AI;
-using Verse.AI.Group;
 
 namespace Tenants
 {
@@ -99,6 +96,7 @@ namespace Tenants
         }
         public static Pawn FindRandomTenant()
         {
+
             var pawns = (from p in Find.WorldPawns.AllPawnsAlive
                          where p.GetTenantComponent() != null && p.GetTenantComponent().IsTenant && !p.Dead && !p.Spawned && !p.Discarded
                          select p).ToList();
@@ -168,9 +166,14 @@ namespace Tenants
         {
             var generation = true;
             Pawn newTenant = null;
+            var currentRaces = SettingsHelper.LatestVersion.AvailableRaces;
+            if (currentRaces == null || currentRaces.Count == 0)
+            {
+                currentRaces = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race != null && x.RaceProps.Humanlike && x.RaceProps.IsFlesh && x.RaceProps.ResolvedDietCategory != DietCategory.NeverEats).Select(s => s.race.defName).Distinct().ToList();
+            }
             while (generation)
             {
-                var race = SettingsHelper.LatestVersion.AvailableRaces.RandomElement();
+                var race = currentRaces.RandomElement();
                 PawnKindDef random = DefDatabase<PawnKindDef>.AllDefsListForReading.Where(x => x.race.defName == race).RandomElement();
                 if (random == null)
                 {
@@ -178,37 +181,40 @@ namespace Tenants
                 }
 
                 Faction faction = FactionUtility.DefaultFactionFrom(random.defaultFactionType);
-                if(faction.def.pawnGroupMakers.NullOrEmpty())
+                if (faction == null)
+                {
+                    continue;
+                }
+                if (faction.def.pawnGroupMakers.NullOrEmpty())
                 {
                     continue;
                 }
                 newTenant = PawnGenerator.GeneratePawn(random, faction);
-                if (newTenant != null && !newTenant.Dead && !newTenant.IsDessicated() && !newTenant.AnimalOrWildMan())
+                if (newTenant == null || newTenant.Dead || newTenant.IsDessicated() || newTenant.AnimalOrWildMan())
                 {
+                    continue;
+                }
+                if (SettingsHelper.LatestVersion.SimpleClothing)
+                {
+                    FloatRange range = newTenant.kindDef.apparelMoney;
+                    newTenant.kindDef.apparelMoney = new FloatRange(SettingsHelper.LatestVersion.SimpleClothingMin, SettingsHelper.LatestVersion.SimpleClothingMax);
+                    PawnApparelGenerator.GenerateStartingApparelFor(newTenant, new PawnGenerationRequest(random));
+                    newTenant.kindDef.apparelMoney = range;
+                }
+                RemoveExpensiveItems(newTenant);
+                newTenant.GetTenantComponent().IsTenant = true;
+                newTenant.GetTenantComponent().HiddenFaction = faction;
+                newTenant.SetFaction(Faction.OfAncients);
+                if (SettingsHelper.LatestVersion.Weapons)
+                {
+                    var ammo = newTenant.inventory.innerContainer.Where(x => x.def.defName.Contains("Ammunition")).ToList();
+                    foreach (Thing thing in ammo)
                     {
-                        if (SettingsHelper.LatestVersion.SimpleClothing)
-                        {
-                            FloatRange range = newTenant.kindDef.apparelMoney;
-                            newTenant.kindDef.apparelMoney = new FloatRange(SettingsHelper.LatestVersion.SimpleClothingMin, SettingsHelper.LatestVersion.SimpleClothingMax);
-                            PawnApparelGenerator.GenerateStartingApparelFor(newTenant, new PawnGenerationRequest(random));
-                            newTenant.kindDef.apparelMoney = range;
-                        }
-                        RemoveExpensiveItems(newTenant);
-                        newTenant.GetTenantComponent().IsTenant = true;
-                        newTenant.GetTenantComponent().HiddenFaction = faction;
-                        newTenant.SetFaction(Faction.OfAncients);
-                        if (SettingsHelper.LatestVersion.Weapons)
-                        {
-                            var ammo = newTenant.inventory.innerContainer.Where(x => x.def.defName.Contains("Ammunition")).ToList();
-                            foreach (Thing thing in ammo)
-                            {
-                                newTenant.inventory.innerContainer.Remove(thing);
-                            }
-                        }
-                        newTenant.DestroyOrPassToWorld();
-                        generation = false;
+                        newTenant.inventory.innerContainer.Remove(thing);
                     }
                 }
+                newTenant.DestroyOrPassToWorld();
+                generation = false;
             }
             return newTenant;
         }
@@ -299,38 +305,58 @@ namespace Tenants
             Tenant tenantComp = pawn.GetTenantComponent();
             foreach (WorkTypeDef def in DefDatabase<WorkTypeDef>.AllDefs)
             {
-
-                if (def.defName == "Patient")
+                switch (def.defName)
                 {
-                    pawn.workSettings.SetPriority(def, 3);
-                }
-                else if (def.defName == "PatientBedRest")
-                {
-                    pawn.workSettings.SetPriority(def, 3);
-                }
-                else if (!pawn.story.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.Firefighting) && def.defName == "Firefighter")
-                {
-                    pawn.workSettings.SetPriority(DefDatabase<WorkTypeDef>.AllDefs.FirstOrFallback(x => x.defName == "Firefighter"), 3);
-                    tenantComp.MayFirefight = true;
-                }
-                else if (!pawn.story.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.ManualDumb) && def.defName == "BasicWorker")
-                {
-                    pawn.workSettings.SetPriority(DefDatabase<WorkTypeDef>.AllDefs.FirstOrFallback(x => x.defName == "BasicWorker"), 3);
-                    tenantComp.MayBasic = true;
-                }
-                else if (!(pawn.story.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.ManualDumb) || pawn.story.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.Hauling)) && def.defName == "Hauling")
-                {
-                    pawn.workSettings.SetPriority(DefDatabase<WorkTypeDef>.AllDefs.FirstOrFallback(x => x.defName == "Hauling"), 3);
-                    tenantComp.MayHaul = true;
-                }
-                else if (!(pawn.story.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.ManualDumb) || pawn.story.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.Cleaning)) && def.defName == "Cleaning")
-                {
-                    pawn.workSettings.SetPriority(DefDatabase<WorkTypeDef>.AllDefs.FirstOrFallback(x => x.defName == "Cleaning"), 3);
-                    tenantComp.MayClean = true;
-                }
-                else
-                {
-                    pawn.workSettings.Disable(def);
+                    case "Patient":
+                    case "PatientBedRest":
+                        pawn.workSettings.SetPriority(def, 2);
+                        break;
+                    case "Firefighter":
+                        if (!pawn.WorkTypeIsDisabled(def))
+                        {
+                            tenantComp.MayFirefight = true;
+                            pawn.workSettings.SetPriority(def, 2);
+                        } else
+                        {
+                            pawn.workSettings.Disable(def);
+                        }
+                        break;
+                    case "BasicWorker":
+                        if (!pawn.WorkTypeIsDisabled(def))
+                        {
+                            tenantComp.MayBasic = true;
+                            pawn.workSettings.SetPriority(def, 3);
+                        }
+                        else
+                        {
+                            pawn.workSettings.Disable(def);
+                        }
+                        break;
+                    case "Hauling":
+                        if (!pawn.WorkTypeIsDisabled(def))
+                        {
+                            tenantComp.MayHaul = true;
+                            pawn.workSettings.SetPriority(def, 3);
+                        }
+                        else
+                        {
+                            pawn.workSettings.Disable(def);
+                        }
+                        break;
+                    case "Cleaning":
+                        if (!pawn.WorkTypeIsDisabled(def))
+                        {
+                            tenantComp.MayClean = true;
+                            pawn.workSettings.SetPriority(def, 3);
+                        }
+                        else
+                        {
+                            pawn.workSettings.Disable(def);
+                        }
+                        break;
+                    default:
+                        pawn.workSettings.Disable(def);
+                        break;
                 }
             }
         }
@@ -409,23 +435,33 @@ namespace Tenants
         {
             if (pawn.apparel.WornApparel != null && pawn.apparel.WornApparel.Count > 0)
             {
+                var thingsToRemove = new List<Apparel>();
                 foreach (Apparel item in pawn.apparel.WornApparel)
                 {
                     if (item.MarketValue > 400)
                     {
-                        pawn.apparel.Remove(item);
+                        thingsToRemove.Add(item);
                     }
+                }
+                foreach (var item in thingsToRemove)
+                {
+                    pawn.apparel.Remove(item);
                 }
             }
 
             if (pawn.inventory.innerContainer != null && pawn.inventory.innerContainer.Count > 0)
             {
+                var thingsToRemove = new List<Thing>();
                 foreach (Thing item in pawn.inventory.innerContainer)
                 {
                     if (item.MarketValue > 400)
                     {
-                        pawn.inventory.innerContainer.Remove(item);
+                        thingsToRemove.Add(item);
                     }
+                }
+                foreach (var item in thingsToRemove)
+                {
+                    pawn.inventory.innerContainer.Remove(item);
                 }
             }
 

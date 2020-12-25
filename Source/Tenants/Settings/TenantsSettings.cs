@@ -2,7 +2,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using RimWorld;
 using System;
 
 namespace Tenants
@@ -82,6 +81,17 @@ namespace Tenants
             Scribe_Values.Look(ref b, "B", b);
             Scribe_Values.Look(ref LevelOfHappinessToWork, "LevelOfHappinessToWork", levelOfHappinessToWork);
             Scribe_Values.Look(ref GastronomyGuest, "GastronomyGuest", gastronomyGuest);
+
+            // verify selected races exists
+            var correctRaces = new List<string>();
+            foreach (var raceDefName in AvailableRaces)
+            {
+                if (DefDatabase<ThingDef>.GetNamedSilentFail(raceDefName) != null)
+                {
+                    correctRaces.Add(raceDefName);
+                }
+            }
+            AvailableRaces = correctRaces;
         }
         internal void Reset()
         {
@@ -105,6 +115,7 @@ namespace Tenants
     internal static class SettingsHelper
     {
         public static TenantsSettings LatestVersion;
+
         public static void Reset()
         {
             LatestVersion.Reset();
@@ -132,7 +143,7 @@ namespace Tenants
         {
             return settings.GastronomyGuest;
         }
-
+        
         public override void DoSettingsWindowContents(Rect inRect)
         {
             try

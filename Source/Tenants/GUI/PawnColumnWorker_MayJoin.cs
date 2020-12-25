@@ -1,8 +1,8 @@
 ﻿using RimWorld;
-using UnityEngine;
 using Verse;
 
-namespace Tenants {
+namespace Tenants
+{
     public class PawnColumnWorker_MayJoin : PawnColumnWorker_Checkbox {
 
         public PawnColumnWorker_MayJoin() {

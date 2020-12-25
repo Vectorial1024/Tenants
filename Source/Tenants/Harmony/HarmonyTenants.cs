@@ -16,7 +16,6 @@ namespace Tenants {
         static HarmonyTenants() {
             var harmonyInstance = new Harmony("rimworld.limetreesnake.tenants");
 
-
             #region Ticks
             //Tenant Tick
             //harmonyInstance.Patch(AccessTools.Method(typeof(Pawn), "Tick"), null, new HarmonyMethod(typeof(HarmonyTenants).GetMethod("Tick_PostFix")));

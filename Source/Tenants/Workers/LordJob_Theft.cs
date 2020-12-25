@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Verse;
 using Verse.AI;
 using Verse.AI.Group;
-using System.Linq;
 
-namespace Tenants {
+namespace Tenants
+{
     public class LordJob_TenantTheft : LordJob {
         public override bool GuiltyOnDowned => true;
         public override StateGraph CreateGraph() {
