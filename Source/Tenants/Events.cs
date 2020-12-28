@@ -202,7 +202,7 @@ namespace Tenants
                 }
 
                 GenSpawn.Spawn(pawn, spawnSpot, map);
-                pawn.SetFaction(Faction.OfAncients);
+                //pawn.SetFaction(Faction.OfAncients);
                 pawn.relations.everSeenByPlayer = true;
                 Utility.CourierDress(pawn, map);
                 Utility.CourierInventory(pawn, map);

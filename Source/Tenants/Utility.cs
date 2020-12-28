@@ -204,7 +204,7 @@ namespace Tenants
                 RemoveExpensiveItems(newTenant);
                 newTenant.GetTenantComponent().IsTenant = true;
                 newTenant.GetTenantComponent().HiddenFaction = faction;
-                newTenant.SetFaction(Faction.OfAncients);
+                newTenant.SetFaction(null);
                 if (SettingsHelper.LatestVersion.Weapons)
                 {
                     var ammo = newTenant.inventory.innerContainer.Where(x => x.def.defName.Contains("Ammunition")).ToList();
@@ -234,6 +234,7 @@ namespace Tenants
                     }
                 }
             }
+            newCourier.SetFaction(null);
             return newCourier;
         }
         public static void GenerateBasicTenancyContract(Tenant tenantComp)
