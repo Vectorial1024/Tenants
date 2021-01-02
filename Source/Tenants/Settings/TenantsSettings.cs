@@ -21,6 +21,9 @@ namespace Tenants
         private static readonly int outragePenalty = 8;
         private static readonly bool weapons = true;
         private static readonly bool simpleClothing = true;
+        private static readonly bool moleTenants = true;
+        private static readonly bool wantedTenants = true;
+        private static readonly bool royaltyTenants = true;
         private static readonly int simpleClothingMin = 100;
         private static readonly int simpleClothingMax = 300;
         private static readonly int courierCost = 30;
@@ -44,6 +47,9 @@ namespace Tenants
         public int OutragePenalty = outragePenalty;
         public bool Weapons = weapons;
         public bool SimpleClothing = simpleClothing;
+        public bool MoleTenants = moleTenants;
+        public bool WantedTenants = wantedTenants;
+        public bool RoyaltyTenants = royaltyTenants;
         public float SimpleClothingMin = simpleClothingMin;
         public float SimpleClothingMax = simpleClothingMax;
         public float CourierCost = courierCost;
@@ -73,6 +79,9 @@ namespace Tenants
             Scribe_Values.Look(ref OutragePenalty, "OutragePenalty", outragePenalty);
             Scribe_Values.Look(ref Weapons, "Weapons", weapons);
             Scribe_Values.Look(ref SimpleClothing, "SimpleClothing", simpleClothing);
+            Scribe_Values.Look(ref MoleTenants, "MoleTenants", moleTenants);
+            Scribe_Values.Look(ref WantedTenants, "WantedTenants", wantedTenants);
+            Scribe_Values.Look(ref RoyaltyTenants, "RoyaltyTenants", royaltyTenants);
             Scribe_Values.Look(ref SimpleClothingMin, "SimpleClothingMin", simpleClothingMin);
             Scribe_Values.Look(ref SimpleClothingMax, "SimpleClothingMax", simpleClothingMax);
             Scribe_Values.Look(ref CourierCost, "CourierCost", courierCost);
@@ -185,6 +194,7 @@ namespace Tenants
                 list.CheckboxLabeled("Should tenants spawn without weapons?", ref settings.Weapons, "Keep in mind that this removes any weapon when a tenant spawns. Have you given a weapon to a tenant once before, it'll be removed should they leave the map and spawn again somewhere.");
                 list.Gap();
                 list.CheckboxLabeled("Should tenants spawn simpler clothing?", ref settings.SimpleClothing, "Upon tenant creation, tenants will spawn with simpler clothing within the selected value range.");
+                list.Gap();
                 if (settings.SimpleClothing)
                 {
                     list.Gap();
@@ -192,6 +202,15 @@ namespace Tenants
                     settings.SimpleClothingMin = Mathf.Round(list.Slider(settings.SimpleClothingMin, 0f, 500f));
                     list.Label(string.Format("Max total apparel value ({0}).", settings.SimpleClothingMax));
                     settings.SimpleClothingMax = Mathf.Round(list.Slider(settings.SimpleClothingMax, 0f, 1000f));
+                }
+                list.Gap();
+                list.GapLine();
+                list.Label("Tenant types allowed");
+                list.CheckboxLabeled("Mole tenants", ref settings.MoleTenants, "Some tenants can be moles from hostile factions and will send info for an attack.");
+                list.CheckboxLabeled("Wanted tenants", ref settings.WantedTenants, "Some tenants can be wanted by other factions that will not like the helping of a fugitive.");
+                if (ModLister.GetActiveModWithIdentifier("Ludeon.RimWorld.Royalty") != null)
+                {
+                    list.CheckboxLabeled("Royalty tenants", ref settings.RoyaltyTenants, "Allow tenants with royal titles that needs to be satisfied.");
                 }
                 list.Gap();
                 list.GapLine();

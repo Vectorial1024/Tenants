@@ -141,12 +141,12 @@ namespace Tenants
             var stringBuilder = new StringBuilder("");
             //Check if pawn is special
             //Wanted
-            if (Rand.Value < 0.2f)
+            if (SettingsHelper.LatestVersion.WantedTenants && Rand.Value < 0.2f)
             {
                 Utility.GenerateWanted(pawn);
             }
             //Mole
-            if (Rand.Value < 0.33f && tenantComp.HiddenFaction.HostileTo(Find.FactionManager.OfPlayer))
+            if (SettingsHelper.LatestVersion.MoleTenants && Rand.Value < 0.33f && tenantComp.HiddenFaction.HostileTo(Find.FactionManager.OfPlayer))
             {
                 tenantComp.Mole = true;
             }
@@ -222,7 +222,7 @@ namespace Tenants
         {
             Utility.MakePayment(pawn);
             pawn.jobs.ClearQueuedJobs();
-            pawn.SetFaction(Faction.OfAncients);
+            pawn.SetFaction(null);
             pawn.GetTenantComponent().CleanTenancy();
             LordMaker.MakeNewLord(pawn.Faction, new LordJob_ExitMapBest(), pawn.Map, new List<Pawn> { pawn });
             if (MapComponent_Tenants.GetComponent(pawn.Map).WantedTenants.Contains(pawn))
@@ -234,14 +234,14 @@ namespace Tenants
         {
             Messages.Message("ContractDonePlayerTerminated".Translate(pawn.Named("PAWN")), MessageTypeDefOf.NeutralEvent);
             pawn.jobs.ClearQueuedJobs();
-            pawn.SetFaction(Faction.OfAncients);
+            pawn.SetFaction(null);
             pawn.GetTenantComponent().CleanTenancy();
             LordMaker.MakeNewLord(pawn.Faction, new LordJob_ExitMapBest(), pawn.Map, new List<Pawn> { pawn });
         }
         public static void TenantTheft(Pawn pawn)
         {
             pawn.jobs.ClearQueuedJobs();
-            pawn.SetFaction(Faction.OfAncients);
+            pawn.SetFaction(null);
             pawn.GetTenantComponent().IsTenant = false;
             LordMaker.MakeNewLord(pawn.Faction, new LordJob_TenantTheft(), pawn.Map, new List<Pawn> { pawn });
         }

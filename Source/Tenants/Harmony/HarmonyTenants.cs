@@ -207,25 +207,43 @@ namespace Tenants {
         #endregion Functionality
         #region GUI
         public static void GetGizmos_PostFix(ref IEnumerable<Gizmo> __result, ref Pawn __instance) {
-            try {
-                if (__instance != null) {
-                    Tenant tenantComp = __instance.GetTenantComponent();
-                    if (tenantComp != null && tenantComp.IsTenant && __result != null) {
-                        var gizmos = __result.ToList();
-                        if (gizmos != null) {
-                            foreach (Gizmo giz in gizmos.ToList()) {
-                                if ((giz as Command).defaultLabel == "Draft")
-                                {
-                                    gizmos.Remove(giz);
-                                }
-                            }
-                            __result = gizmos.AsEnumerable();
-                        }
+            var log = 0;
+            try
+            {
+                log++;
+                if (__instance == null)
+                {
+                    return;
+                }
+                log++;
+                Tenant tenantComp = __instance.GetTenantComponent();
+                if (tenantComp == null || !tenantComp.IsTenant || __result == null)
+                {
+                    return;
+                }
+                log++;
+                if (__result == null || __result.Count() == 0)
+                {
+                    return;
+                }
+                log++;
+                var gizmos = __result.ToList();
+
+                log++;
+                foreach (Gizmo giz in gizmos.ToList())
+                {
+                    log++;
+                    if (giz.GetType() == typeof(Command_Toggle) && (giz as Command).defaultLabel == "Draft")
+                    {
+                        gizmos.Remove(giz);
                     }
                 }
+                log++;
+                __result = gizmos.AsEnumerable();
+                log++;
             }
             catch (Exception ex) {
-                Log.Message(ex.Message);
+                Log.Message(log + ex.Message);
             }
         }
         public static bool PawnCanUseWorkGiver_PreFix(Pawn pawn, WorkGiver giver) {

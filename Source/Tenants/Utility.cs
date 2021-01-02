@@ -194,6 +194,10 @@ namespace Tenants
                 {
                     continue;
                 }
+                if (newTenant.royalty != null && !SettingsHelper.LatestVersion.RoyaltyTenants && (newTenant.royalty.CanRequireBedroom() || newTenant.royalty.CanRequireThroneroom()))
+                {
+                    continue;
+                }
                 if (SettingsHelper.LatestVersion.SimpleClothing)
                 {
                     FloatRange range = newTenant.kindDef.apparelMoney;
