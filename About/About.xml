@@ -25,6 +25,12 @@
 Update of LimeTreeSnakes mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1854879867
 
+- Added support for Gastronomy settings
+- Fixed some issues with tenant generation
+- Removed factions from Tenants and Couriers, so they will never spawn hostile
+- Added options for disabling the Mole and Wanted type tenants
+- Added option for disabling tenants with Royalty needs
+
 [img]https://i.imgur.com/7Gzt3Rg.png[/img]
 
 [table]
@@ -34,6 +40,8 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1854879867
     [/tr]
 [/table]
 	
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2288125657][img]https://i.imgur.com/kNldlMg.png[/img][/url]
+
 [img]https://i.imgur.com/NOW7jU1.png[/img]
 [h1]With the Royalty expansion, I consider tenants as they are now, Obsolete.[/h1]
 [h2]Thanks a lot for your support and await my new ideas![/h2]
@@ -74,16 +82,7 @@ Couriers are responsible for delivering silver and they spawn randomly. However,
 [*][O21] vehicle framework 
 
 [/list]
- 
-[h1]Links[/h1]
-[url=https://ludeon.com/forums/index.php?topic=49501.0]Ludeon[/url]
-[url=https://github.com/LimeTreeSnake/Tenants]GitHub[/url]
-[url=https://steamcommunity.com/sharedfiles/filedetails/?id=1854879867]Steam Workshop[/url]
-[url=https://discord.gg/x2Xn7Wj]Discord[/url]
- 
-[h1]Patreon[/h1]
-I created a [url=https://www.patreon.com/LimeTreeSnake]Patreon account[/url] since some people have asked for a way to support me!
- 
+  
 [h1]Special Thanks to[/h1]
 [list]
 [*]Pardeike: cause of his work on Harmony.
@@ -105,5 +104,17 @@ I created a [url=https://www.patreon.com/LimeTreeSnake]Patreon account[/url] sin
 
  
 [h1]License[/h1]
-You may use this code as however you want. However, do let me know and give credits due if you do as I'd love to hear about what you've created with it! :)</description>
+You may use this code as however you want. However, do let me know and give credits due if you do as I'd love to hear about what you've created with it! :)
+
+[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[list]
+[*] See if the the error persists if you just have this mod and its requirements active.
+[*] If not, try adding your other mods until it happens again.
+[*] Post your error-log using [url=https://steamcommunity.com/workshop/filedetails/?id=818773962]HugsLib[/url] and command Ctrl+F12
+[*] For best support, please use the Discord-channel for error-reporting.
+[*] Do not report errors by making a discussion-thread, I get no notification of that.
+[*] If you have the solution for a problem, please post it to the GitHub repository.
+[/list]
+</description>
 </ModMetaData>
+
