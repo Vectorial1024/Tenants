@@ -18,7 +18,16 @@
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <AchievementsExpanded.AchievementDef>
+            <AchievementsExpanded.AchievementDef Name="Mlie_AchievementParent" Abstract="true">
+              <bgtexPath>Achievements/AchievmentsBG</bgtexPath>
+              <tab>Mlie_Continued</tab>
+            </AchievementsExpanded.AchievementDef>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <AchievementsExpanded.AchievementDef ParentName="Mlie_AchievementParent">
               <defName>TNT_Roommate</defName>
               <label>Roommate</label>
               <description>Have one Tenant</description>
@@ -27,14 +36,13 @@
               </tracker>
               <texPath>Achievements/TNT_Roommate</texPath>
               <points>5</points>
-              <tab>Mlie_Continued</tab>
             </AchievementsExpanded.AchievementDef>
           </value>
         </li>
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <AchievementsExpanded.AchievementDef>
+            <AchievementsExpanded.AchievementDef ParentName="Mlie_AchievementParent">
               <defName>TNT_Dorm</defName>
               <label>Dorm</label>
               <description>Have three Tenants at the same time</description>
@@ -43,14 +51,13 @@
               </tracker>
               <texPath>Achievements/TNT_Dorm</texPath>
               <points>15</points>
-              <tab>Mlie_Continued</tab>
             </AchievementsExpanded.AchievementDef>
           </value>
         </li>
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <AchievementsExpanded.AchievementDef>
+            <AchievementsExpanded.AchievementDef ParentName="Mlie_AchievementParent">
               <defName>TNT_Apartments</defName>
               <label>Apartments</label>
               <description>Have ten Tenants at the same time</description>
@@ -59,14 +66,13 @@
               </tracker>
               <texPath>Achievements/TNT_Apartments</texPath>
               <points>50</points>
-              <tab>Mlie_Continued</tab>
             </AchievementsExpanded.AchievementDef>
           </value>
         </li>
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <AchievementsExpanded.AchievementDef>
+            <AchievementsExpanded.AchievementDef ParentName="Mlie_AchievementParent">
               <defName>TNT_FullHouse</defName>
               <label>Full House</label>
               <description>Have five Tenants join the colony</description>
@@ -75,14 +81,13 @@
               </tracker>
               <texPath>Achievements/TNT_FullHouse</texPath>
               <points>50</points>
-              <tab>Mlie_Continued</tab>
             </AchievementsExpanded.AchievementDef>
           </value>
         </li>
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <AchievementsExpanded.AchievementDef>
+            <AchievementsExpanded.AchievementDef ParentName="Mlie_AchievementParent">
               <defName>TNT_MovingIn</defName>
               <label>Moving In</label>
               <description>Have one Tenant join the colony</description>
@@ -91,14 +96,13 @@
               </tracker>
               <texPath>Achievements/TNT_MovingIn</texPath>
               <points>20</points>
-              <tab>Mlie_Continued</tab>
             </AchievementsExpanded.AchievementDef>
           </value>
         </li>
         <li Class="PatchOperationAdd">
           <xpath>Defs</xpath>
           <value>
-            <AchievementsExpanded.AchievementDef>
+            <AchievementsExpanded.AchievementDef ParentName="Mlie_AchievementParent">
               <defName>TNT_FullHouse</defName>
               <label>Full House</label>
               <description>Have five Tenants join the colony</description>
@@ -107,7 +111,6 @@
               </tracker>
               <texPath>Achievements/TNT_FullHouse</texPath>
               <points>50</points>
-              <tab>Mlie_Continued</tab>
             </AchievementsExpanded.AchievementDef>
           </value>
         </li>
