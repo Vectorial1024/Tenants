@@ -19,6 +19,70 @@
           <xpath>Defs</xpath>
           <value>
             <AchievementsExpanded.AchievementDef>
+              <defName>TNT_Roommate</defName>
+              <label>Roommate</label>
+              <description>Have one Tenant</description>
+              <tracker Class="Tenants.Achievements.TenantCurrentTracker">
+                <count>1</count>
+              </tracker>
+              <texPath>Achievements/TNT_Roommate</texPath>
+              <points>5</points>
+              <tab>Mlie_Continued</tab>
+            </AchievementsExpanded.AchievementDef>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <AchievementsExpanded.AchievementDef>
+              <defName>TNT_Dorm</defName>
+              <label>Dorm</label>
+              <description>Have three Tenants at the same time</description>
+              <tracker Class="Tenants.Achievements.TenantCurrentTracker">
+                <count>3</count>
+              </tracker>
+              <texPath>Achievements/TNT_Dorm</texPath>
+              <points>15</points>
+              <tab>Mlie_Continued</tab>
+            </AchievementsExpanded.AchievementDef>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <AchievementsExpanded.AchievementDef>
+              <defName>TNT_Apartments</defName>
+              <label>Apartments</label>
+              <description>Have ten Tenants at the same time</description>
+              <tracker Class="Tenants.Achievements.TenantCurrentTracker">
+                <count>10</count>
+              </tracker>
+              <texPath>Achievements/TNT_Apartments</texPath>
+              <points>50</points>
+              <tab>Mlie_Continued</tab>
+            </AchievementsExpanded.AchievementDef>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <AchievementsExpanded.AchievementDef>
+              <defName>TNT_FullHouse</defName>
+              <label>Full House</label>
+              <description>Have five Tenants join the colony</description>
+              <tracker Class="Tenants.Achievements.TenantJoinedTracker">
+                <count>5</count>
+              </tracker>
+              <texPath>Achievements/TNT_FullHouse</texPath>
+              <points>50</points>
+              <tab>Mlie_Continued</tab>
+            </AchievementsExpanded.AchievementDef>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+            <AchievementsExpanded.AchievementDef>
               <defName>TNT_MovingIn</defName>
               <label>Moving In</label>
               <description>Have one Tenant join the colony</description>

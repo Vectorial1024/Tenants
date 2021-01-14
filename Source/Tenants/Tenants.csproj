@@ -51,6 +51,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Achievements\TenantCurrentTracker.cs" />
     <Compile Include="Achievements\TenantJoinedTracker.cs" />
     <Compile Include="Comp\Courier.cs" />
     <Compile Include="Comp\MailBox.cs" />

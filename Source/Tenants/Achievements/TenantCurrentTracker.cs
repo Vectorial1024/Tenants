@@ -6,19 +6,19 @@ using Verse;
 
 namespace Tenants.Achievements
 {
-    public class TenantJoinedTracker : TrackerBase
+    public class TenantCurrentTracker : TrackerBase
     {
-        public override string Key => "TenantJoinedTracker";
+        public override string Key => "TenantCurrentTracker";
 
         public override Func<bool> AttachToLongTick => () => Trigger();
 
         protected override string[] DebugText => new string[] { $"Count: {count}" };
 
-        public TenantJoinedTracker()
+        public TenantCurrentTracker()
         {
         }
 
-        public TenantJoinedTracker(TenantJoinedTracker reference) : base(reference)
+        public TenantCurrentTracker(TenantCurrentTracker reference) : base(reference)
         {
             count = reference.count;
         }
@@ -39,7 +39,7 @@ namespace Tenants.Achievements
             {
                 return false;
             }
-            var tenants = from tenant in factionPawns where tenant.GetTenantComponent() != null && !tenant.GetTenantComponent().IsTenant && tenant.GetTenantComponent().HiddenFaction != null select tenant;
+            var tenants = from tenant in factionPawns where tenant.GetTenantComponent() != null && tenant.GetTenantComponent().IsTenant select tenant;
             triggeredCount = tenants.Count();
 
             return triggeredCount >= count;
