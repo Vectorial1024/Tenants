@@ -77,21 +77,6 @@
           <xpath>Defs</xpath>
           <value>
             <AchievementsExpanded.AchievementDef ParentName="Mlie_AchievementParent">
-              <defName>TNT_FullHouse</defName>
-              <label>Full House</label>
-              <description>Have five Tenants join the colony</description>
-              <tracker Class="Tenants.Achievements.TenantJoinedTracker">
-                <count>5</count>
-              </tracker>
-              <texPath>Achievements/TNT_FullHouse</texPath>
-              <points>50</points>
-            </AchievementsExpanded.AchievementDef>
-          </value>
-        </li>
-        <li Class="PatchOperationAdd">
-          <xpath>Defs</xpath>
-          <value>
-            <AchievementsExpanded.AchievementDef ParentName="Mlie_AchievementParent">
               <defName>TNT_MovingIn</defName>
               <label>Moving In</label>
               <description>Have one Tenant join the colony</description>

@@ -1,14 +1,12 @@
-﻿
+﻿using System.Reflection;
 using Gastronomy;
 using HarmonyLib;
-using System.Reflection;
 using Verse;
 
 namespace Tenants
 {
-
     [StaticConstructorOnStartup]
-    static class GastronomyPatch
+    internal static class GastronomyPatch
     {
         static GastronomyPatch()
         {
@@ -17,8 +15,8 @@ namespace Tenants
         }
 
         [HarmonyPatch(typeof(RestaurantController))]
-        [HarmonyPatch("CanDineHere")]
-        public class Prefix_RestaurantController_CanDineHere
+        [HarmonyPatch("MayDineHere")]
+        public class Prefix_RestaurantController_MayDineHere
         {
             [HarmonyPrefix]
             public static bool Prefix(ref RestaurantController __instance, ref bool __result, Pawn pawn)
@@ -28,26 +26,31 @@ namespace Tenants
                     return true;
                 }
 
-                if (pawn.GetTenantComponent() == null) {
+                if (pawn.GetTenantComponent() == null)
+                {
                     return true;
                 }
 
-                if (!pawn.GetTenantComponent().IsTenant) {
-                    return true;
-                }
-                
-                if(!pawn.GetTenantComponent().Contracted)
+                if (!pawn.GetTenantComponent().IsTenant)
                 {
                     return true;
                 }
+
+                if (!pawn.GetTenantComponent().Contracted)
+                {
+                    return true;
+                }
+
                 var shouldCountAsGuest = ModMain.instance.GetSettings<TenantsSettings>().GastronomyGuest;
-                if ((!__instance.allowColonists && !shouldCountAsGuest) || (!__instance.allowGuests && shouldCountAsGuest))
+                if (!__instance.allowColonists && !shouldCountAsGuest || !__instance.allowGuests && shouldCountAsGuest)
                 {
                     __result = false;
-                } else
+                }
+                else
                 {
                     __result = true;
                 }
+
                 return false;
             }
         }
