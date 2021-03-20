@@ -1,18 +1,16 @@
-﻿using AchievementsExpanded;
-using RimWorld;
-using System;
+﻿using System;
 using System.Linq;
+using AchievementsExpanded;
+using RimWorld;
 using Verse;
 
 namespace Tenants.Achievements
 {
     public class TenantJoinedTracker : TrackerBase
     {
-        public override string Key => "TenantJoinedTracker";
+        public int count = 1;
 
-        public override Func<bool> AttachToLongTick => () => Trigger();
-
-        protected override string[] DebugText => new string[] { $"Count: {count}" };
+        [Unsaved] protected int triggeredCount; //Only for display
 
         public TenantJoinedTracker()
         {
@@ -23,7 +21,18 @@ namespace Tenants.Achievements
             count = reference.count;
         }
 
-        public override (float percent, string text) PercentComplete => count > 1 ? ((float)triggeredCount / count, $"{triggeredCount} / {count}") : base.PercentComplete;
+        public override string Key => "TenantJoinedTracker";
+
+        public override Func<bool> AttachToLongTick => () => Trigger();
+
+        protected override string[] DebugText => new[] {$"Count: {count}"};
+
+        public override (float percent, string text) PercentComplete => count > 1
+            ? ((float) triggeredCount / count, $"{triggeredCount} / {count}")
+            : base.PercentComplete;
+
+
+        public override bool UnlockOnStartup => Trigger();
 
 
         public override void ExposeData()
@@ -31,6 +40,7 @@ namespace Tenants.Achievements
             base.ExposeData();
             Scribe_Values.Look(ref count, "count", 1);
         }
+
         public override bool Trigger()
         {
             base.Trigger();
@@ -39,17 +49,14 @@ namespace Tenants.Achievements
             {
                 return false;
             }
-            var tenants = from tenant in factionPawns where tenant.GetTenantComponent() != null && !tenant.GetTenantComponent().IsTenant && tenant.GetTenantComponent().HiddenFaction != null select tenant;
+
+            var tenants = from tenant in factionPawns
+                where tenant.GetTenantComponent() != null && !tenant.GetTenantComponent().IsTenant &&
+                      tenant.GetTenantComponent().HiddenFaction != null
+                select tenant;
             triggeredCount = tenants.Count();
 
             return triggeredCount >= count;
         }
-
-
-        public override bool UnlockOnStartup => Trigger();
-
-        public int count = 1;
-        [Unsaved]
-        protected int triggeredCount = 0; //Only for display
     }
 }

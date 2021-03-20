@@ -3,25 +3,32 @@ using Verse;
 
 namespace Tenants
 {
-    public class PawnColumnWorker_AutoRenew : PawnColumnWorker_Checkbox {
-
-        public PawnColumnWorker_AutoRenew() {
-            foreach(PawnColumnDef def in DefDatabase<PawnColumnDef>.AllDefs) {
-                if(def.defName == "AutoRenew") {
-                    def.label = "AutoRenew".Translate();
+    public class PawnColumnWorker_AutoRenew : PawnColumnWorker_Checkbox
+    {
+        public PawnColumnWorker_AutoRenew()
+        {
+            foreach (var pawnColumnDef in DefDatabase<PawnColumnDef>.AllDefs)
+            {
+                if (pawnColumnDef.defName == "AutoRenew")
+                {
+                    pawnColumnDef.label = "AutoRenew".Translate();
                 }
             }
         }
-        protected override string GetTip(Pawn pawn) {
+
+        protected override string GetTip(Pawn pawn)
+        {
             return "AutoRenewTip".Translate();
         }
-        protected override bool GetValue(Pawn pawn) {
+
+        protected override bool GetValue(Pawn pawn)
+        {
             return pawn.GetTenantComponent().AutoRenew;
         }
 
-        protected override void SetValue(Pawn pawn, bool value) {
+        protected override void SetValue(Pawn pawn, bool value)
+        {
             pawn.GetTenantComponent().AutoRenew = value;
-            
         }
     }
 }

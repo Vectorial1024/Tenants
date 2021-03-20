@@ -18,21 +18,21 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\Gastronomy\Assemblies</OutputPath>
+    <OutputPath>..\..\1.2\Assemblies\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>7.2</LangVersion>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\Gastronomy\Assemblies</OutputPath>
+    <OutputPath>..\..\1.2\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>7.2</LangVersion>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
@@ -53,53 +53,31 @@
   <ItemGroup>
     <Compile Include="Achievements\TenantCurrentTracker.cs" />
     <Compile Include="Achievements\TenantJoinedTracker.cs" />
-    <Compile Include="Comp\CompProps_Courier.cs" />
-    <Compile Include="Comp\CompProps_MailBox.cs" />
-    <Compile Include="Comp\CompProps_Tenant.cs" />
     <Compile Include="Comp\Courier.cs" />
     <Compile Include="Comp\MailBox.cs" />
-    <Compile Include="Def\IncidentDefOf.cs" />
-    <Compile Include="Def\JobDefOf.cs" />
-    <Compile Include="Def\RaidStrategyDefOf.cs" />
-    <Compile Include="Def\ThingDefOf.cs" />
+    <Compile Include="Def\DefOfTenants.cs" />
     <Compile Include="Events.cs" />
-    <Compile Include="GUI\PawnColumnWorker_Basic.cs" />
-    <Compile Include="GUI\PawnColumnWorker_Cleaning.cs" />
-    <Compile Include="GUI\PawnColumnWorker_Hauling.cs" />
-    <Compile Include="GUI\PawnTable_Tenants.cs" />
     <Compile Include="Harmony\HarmonyTenants.cs" />
     <Compile Include="Comp\MapComponent_Tenants.cs" />
     <Compile Include="GUI\Textures.cs" />
     <Compile Include="GUI\Alert_TenantSad.cs" />
-    <Compile Include="GUI\PawnColumnWorker_FireFight.cs" />
+    <Compile Include="GUI\PawnColumnWorker_Work.cs" />
     <Compile Include="GUI\PawnColumnWorker_TenantLabel.cs" />
     <Compile Include="GUI\PawnColumnWorker_MayJoin.cs" />
     <Compile Include="GUI\PawnColumnWorker_AutoRenew.cs" />
     <Compile Include="GUI\PawnColumnWorker_CancelContract.cs" />
-    <Compile Include="Settings\ModMain.cs" />
-    <Compile Include="Settings\SettingsHelper.cs" />
-    <Compile Include="Workers\IncidentWorker_MoleRaid.cs" />
-    <Compile Include="Workers\IncidentWorker_Opportunists.cs" />
-    <Compile Include="Workers\IncidentWorker_RetributionForDead.cs" />
-    <Compile Include="Workers\IncidentWorker_RetributionForCaptured.cs" />
-    <Compile Include="Workers\IncidentWorker_TenantProposition.cs" />
-    <Compile Include="Workers\IncidentWorker_TenantCourier.cs" />
-    <Compile Include="Workers\IncidentWorker_Wanted.cs" />
-    <Compile Include="Workers\JobDriver_CheckMailBox.cs" />
-    <Compile Include="Workers\JobDriver_UseCommsConsoleTenants.cs" />
-    <Compile Include="Workers\JobDriver_UseCommsConsoleInviteCourier.cs" />
-    <Compile Include="Workers\JobDriver_UseCommsConsoleMole.cs" />
-    <Compile Include="Workers\LordJob_CourierDeliver.cs" />
-    <Compile Include="Workers\LordJob_TenantSteal.cs" />
-    <Compile Include="Workers\LordJob_TenantTheft.cs" />
+    <Compile Include="Workers\IncidentWorker_Raid.cs" />
+    <Compile Include="Workers\IncidentWorker_Tenant.cs" />
+    <Compile Include="Workers\JobDriver_Tenants.cs" />
+    <Compile Include="Workers\LordJob_Courier.cs" />
+    <Compile Include="Workers\LordJob_Theft.cs" />
     <Compile Include="GUI\MainTabWindow_Tenant.cs" />
     <Compile Include="GUI\PawnColumnWorker_ContractIcon.cs" />
     <Compile Include="Comp\Tenant.cs" />
     <Compile Include="Settings\TenantsSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility.cs" />
-    <Compile Include="Workers\LordToil_CourierDeliver.cs" />
-    <Compile Include="Workers\LordToil_TenantStealCover.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

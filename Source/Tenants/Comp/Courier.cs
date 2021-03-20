@@ -1,15 +1,11 @@
-﻿using Verse;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Verse;
 
 namespace Tenants
 {
-    public class Courier : ThingComp {
+    public class Courier : ThingComp
+    {
         public bool isCourier = false;
-        public List<ThingDef> items = new List<ThingDef>();
-    }
-    public class CompProps_Courier : CompProperties {
-        public CompProps_Courier() {
-            compClass = typeof(Courier);
-        }
+        public List<ThingDef> items = new();
     }
 }

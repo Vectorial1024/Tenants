@@ -1,23 +1,33 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace Tenants {
-    public class PawnColumnWorker_CancelContract : PawnColumnWorker_Checkbox {
-        public PawnColumnWorker_CancelContract() {
-            foreach (PawnColumnDef def in DefDatabase<PawnColumnDef>.AllDefs) {
-                if (def.defName == "CancelContract") {
-                    def.label = "Terminate".Translate();
+namespace Tenants
+{
+    public class PawnColumnWorker_CancelContract : PawnColumnWorker_Checkbox
+    {
+        public PawnColumnWorker_CancelContract()
+        {
+            foreach (var pawnColumnDef in DefDatabase<PawnColumnDef>.AllDefs)
+            {
+                if (pawnColumnDef.defName == "CancelContract")
+                {
+                    pawnColumnDef.label = "Terminate".Translate();
                 }
             }
         }
-        protected override string GetTip(Pawn pawn) {
+
+        protected override string GetTip(Pawn pawn)
+        {
             return "TerminateTip".Translate();
         }
-        protected override bool GetValue(Pawn pawn) {
+
+        protected override bool GetValue(Pawn pawn)
+        {
             return pawn.GetTenantComponent().IsTerminated;
         }
 
-        protected override void SetValue(Pawn pawn, bool value) {
+        protected override void SetValue(Pawn pawn, bool value)
+        {
             pawn.GetTenantComponent().IsTerminated = value;
         }
     }

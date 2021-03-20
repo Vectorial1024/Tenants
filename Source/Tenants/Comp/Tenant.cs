@@ -1,25 +1,28 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace Tenants {
-    public class Tenant : ThingComp {
+namespace Tenants
+{
+    public class Tenant : ThingComp
+    {
         #region Fields
-        private bool isTenant = false;
-        private bool isTerminated = false;
-        private bool capturedTenant = false;
-        private bool mayJoin = false;
-        private bool autoRenew = false;
-        private bool contracted = false;
-        private bool wanted = false;
+
+        private bool isTenant;
+        private bool isTerminated;
+        private bool capturedTenant;
+        private bool mayJoin;
+        private bool autoRenew;
+        private bool contracted;
+        private bool wanted;
         private Faction wantedBy;
-        private bool mole = false;
-        private bool moleActivated = false;
-        private bool moleMessage = false;
+        private bool mole;
+        private bool moleActivated;
+        private bool moleMessage;
         private Faction hiddenFaction;
-        private bool mayFirefight = false;
-        private bool mayBasic = false;
-        private bool mayHaul = false;
-        private bool mayClean = false;
+        private bool mayFirefight;
+        private bool mayBasic;
+        private bool mayHaul;
+        private bool mayClean;
 
         private int contractLength;
         private int contractDate;
@@ -27,128 +30,190 @@ namespace Tenants {
         private int recentBadMoodCount, happyMoodCount, sadMoodCount, neutralMoodCount;
         private int payment;
         private int surgeryQueue;
+
         #endregion Fields
+
         #region Properties
+
         public bool IsTenant
         {
             get => isTenant;
-            set { isTenant = value; if (isTenant == false) { CleanTenancy(); } }
+            set
+            {
+                isTenant = value;
+                if (isTenant == false)
+                {
+                    CleanTenancy();
+                }
+            }
         }
-        public bool IsTerminated {
+
+        public bool IsTerminated
+        {
             get => isTerminated;
             set => isTerminated = value;
         }
-        public bool CapturedTenant {
+
+        public bool CapturedTenant
+        {
             get => capturedTenant;
             set => capturedTenant = value;
         }
-        public bool MayJoin {
+
+        public bool MayJoin
+        {
             get => mayJoin;
             set => mayJoin = value;
         }
-        public bool AutoRenew {
+
+        public bool AutoRenew
+        {
             get => autoRenew;
             set => autoRenew = value;
         }
-        public bool Contracted {
+
+        public bool Contracted
+        {
             get => contracted;
             set => contracted = value;
         }
-        public bool Wanted {
+
+        public bool Wanted
+        {
             get => wanted;
             set => wanted = value;
         }
-        public Faction WantedBy {
+
+        public Faction WantedBy
+        {
             get => wantedBy;
             set => wantedBy = value;
         }
-        public bool Mole {
+
+        public bool Mole
+        {
             get => mole;
             set => mole = value;
         }
-        public bool MoleActivated {
+
+        public bool MoleActivated
+        {
             get => moleActivated;
             set => moleActivated = value;
         }
-        public bool MoleMessage {
+
+        public bool MoleMessage
+        {
             get => moleMessage;
             set => moleMessage = value;
         }
-        public Faction HiddenFaction {
+
+        public Faction HiddenFaction
+        {
             get => hiddenFaction;
             set => hiddenFaction = value;
         }
-        public bool MayFirefight {
+
+        public bool MayFirefight
+        {
             get => mayFirefight;
             set => mayFirefight = value;
         }
-        public bool MayBasic {
+
+        public bool MayBasic
+        {
             get => mayBasic;
             set => mayBasic = value;
         }
-        public bool MayHaul {
+
+        public bool MayHaul
+        {
             get => mayHaul;
             set => mayHaul = value;
         }
-        public bool MayClean {
+
+        public bool MayClean
+        {
             get => mayClean;
             set => mayClean = value;
         }
 
-        public int ContractLength {
+        public int ContractLength
+        {
             get => contractLength;
             set => contractLength = value;
         }
-        public int ContractDate {
+
+        public int ContractDate
+        {
             get => contractDate;
             set => contractDate = value;
         }
-        public int ContractEndDate {
+
+        public int ContractEndDate
+        {
             get => contractEndDate;
             set => contractEndDate = value;
         }
+
         public int ContractEndTick => contractDate + contractLength;
 
-        public int RecentBadMoodsCount {
+        public int RecentBadMoodsCount
+        {
             get => recentBadMoodCount;
             set => recentBadMoodCount = value;
         }
-        public int HappyMoodCount {
+
+        public int HappyMoodCount
+        {
             get => happyMoodCount;
             set => happyMoodCount = value;
         }
-        public int SadMoodCount {
+
+        public int SadMoodCount
+        {
             get => sadMoodCount;
             set => sadMoodCount = value;
         }
-        public int NeutralMoodCount {
+
+        public int NeutralMoodCount
+        {
             get => neutralMoodCount;
             set => neutralMoodCount = value;
         }
-        public int Payment {
+
+        public int Payment
+        {
             get => payment;
             set => payment = value;
         }
-        public int SurgeryQueue {
+
+        public int SurgeryQueue
+        {
             get => surgeryQueue;
             set => surgeryQueue = value;
         }
+
         #endregion Properties
 
         #region Methods
+
         /// <summary>
-        /// Used to reset tenant mood.
+        ///     Used to reset tenant mood.
         /// </summary>
-        public void ResetMood() {
+        public void ResetMood()
+        {
             recentBadMoodCount = 0;
             happyMoodCount = 0;
             sadMoodCount = 0;
             neutralMoodCount = 0;
         }
+
         /// <summary>
-        /// Used when a Tenant should leave.
+        ///     Used when a Tenant should leave.
         /// </summary>
-        public void CleanTenancy() {
+        public void CleanTenancy()
+        {
             contracted = false;
             wanted = false;
             wantedBy = null;
@@ -162,7 +227,9 @@ namespace Tenants {
             surgeryQueue = 0;
             ResetMood();
         }
-        public override void PostExposeData() {
+
+        public override void PostExposeData()
+        {
             Scribe_Values.Look(ref isTenant, "IsTenant");
             Scribe_Values.Look(ref isTerminated, "IsTerminated");
             Scribe_Values.Look(ref capturedTenant, "CapturedTenant");
@@ -189,11 +256,7 @@ namespace Tenants {
             Scribe_Values.Look(ref payment, "Payment");
             Scribe_Values.Look(ref surgeryQueue, "SurgeryQueue");
         }
+
         #endregion Methods
-    }
-    public class CompProps_Tenant : CompProperties {
-        public CompProps_Tenant() {
-            compClass = typeof(Tenant);
-        }
     }
 }
