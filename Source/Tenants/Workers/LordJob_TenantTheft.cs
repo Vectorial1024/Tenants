@@ -9,7 +9,7 @@ namespace Tenants
         public override StateGraph CreateGraph()
         {
             var stateGraph = new StateGraph();
-            var lordToil_Steal = stateGraph.AttachSubgraph(new LordJob_TenantSteal().CreateGraph()).StartingToil;
+            var unused = stateGraph.AttachSubgraph(new LordJob_TenantSteal().CreateGraph()).StartingToil;
             return stateGraph;
         }
     }

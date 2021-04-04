@@ -41,7 +41,7 @@ namespace Tenants
                     return true;
                 }
 
-                var shouldCountAsGuest = ModMain.instance.GetSettings<TenantsSettings>().GastronomyGuest;
+                var shouldCountAsGuest = SettingsHelper.LatestVersion.GastronomyGuest;
                 if (!__instance.allowColonists && !shouldCountAsGuest || !__instance.allowGuests && shouldCountAsGuest)
                 {
                     __result = false;

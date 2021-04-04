@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tenants", "Tenants\Tenants.csproj", "{C49EE439-427F-4B0A-A4BC-81A503AED24F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GastronomyPatch", "GastronomyPatch\GastronomyPatch.csproj", "{3E06096B-8065-4F25-805B-71CBB5E9C42F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C49EE439-427F-4B0A-A4BC-81A503AED24F}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{C49EE439-427F-4B0A-A4BC-81A503AED24F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C49EE439-427F-4B0A-A4BC-81A503AED24F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E06096B-8065-4F25-805B-71CBB5E9C42F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E06096B-8065-4F25-805B-71CBB5E9C42F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E06096B-8065-4F25-805B-71CBB5E9C42F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E06096B-8065-4F25-805B-71CBB5E9C42F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
