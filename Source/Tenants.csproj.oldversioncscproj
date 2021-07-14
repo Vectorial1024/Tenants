@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputPath>..\..\1.3\Assemblies</OutputPath>
     <TargetFramework>net472</TargetFramework>
@@ -10,8 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-       <Version>*</Version> 
-      <!--<Version>1.3.3059-beta</Version>-->
+      <!-- <Version>*</Version> -->
+      <Version>1.3.3059-beta</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -23,5 +23,5 @@
 		  <Version>*</Version>
 	  </PackageReference>
   </ItemGroup>
-  <!-- 1.3.3059-beta -->
+  <!-- 1.3.3058-beta -->
 </Project>

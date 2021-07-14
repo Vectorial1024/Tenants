@@ -1,6 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputPath>..\..\1.3\Assemblies</OutputPath>
+    <OutputPath>..\..\Gastronomy\1.3\Assemblies</OutputPath>
     <TargetFramework>net472</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -10,8 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
-       <Version>*</Version> 
-      <!--<Version>1.3.3059-beta</Version>-->
+      <!-- <Version>*</Version> -->
+      <Version>1.3.3059-beta</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -19,9 +19,18 @@
       <Version>*</Version>
       <ExcludeAssets>runtime</ExcludeAssets>
     </PackageReference>
-	  <PackageReference Include="AchievementsExpanded">
-		  <Version>*</Version>
-	  </PackageReference>
   </ItemGroup>
-  <!-- 1.3.3059-beta -->
+  <ItemGroup>
+    <ProjectReference Include="..\Tenants\Tenants.csproj">
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Gastronomy">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\2279786905\1.2\Assemblies\Gastronomy.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+  <!-- 1.3.3058-beta -->
 </Project>

@@ -290,7 +290,7 @@ namespace Tenants
                 }
 
                 var relation = tenantComp.HiddenFaction.RelationWith(Find.FactionManager.OfPlayer);
-                relation.goodwill -= SettingsHelper.LatestVersion.OutragePenalty * 2;
+                relation.baseGoodwill -= SettingsHelper.LatestVersion.OutragePenalty * 2;
                 Messages.Message(
                     "TenantFactionOutrage".Translate(pawn.Faction, SettingsHelper.LatestVersion.OutragePenalty,
                         pawn.Named("PAWN")), MessageTypeDefOf.NegativeEvent);
@@ -314,7 +314,7 @@ namespace Tenants
                 }
 
                 var relation = tenantComp.HiddenFaction.RelationWith(Find.FactionManager.OfPlayer);
-                relation.goodwill -= SettingsHelper.LatestVersion.OutragePenalty * 2;
+                relation.baseGoodwill -= SettingsHelper.LatestVersion.OutragePenalty * 2;
                 Messages.Message(
                     "TenantFactionOutrage".Translate(pawn.Faction, SettingsHelper.LatestVersion.OutragePenalty * 2,
                         pawn.Named("PAWN")), MessageTypeDefOf.NegativeEvent);
@@ -364,7 +364,7 @@ namespace Tenants
                 }
 
                 var relation = pawn.Faction.RelationWith(Find.FactionManager.OfPlayer);
-                relation.goodwill -= SettingsHelper.LatestVersion.OutragePenalty;
+                relation.baseGoodwill -= SettingsHelper.LatestVersion.OutragePenalty;
                 Messages.Message(
                     "TenantFactionOutrage".Translate(pawn.Faction, SettingsHelper.LatestVersion.OutragePenalty,
                         pawn.Named("PAWN")), MessageTypeDefOf.NegativeEvent);
@@ -458,9 +458,9 @@ namespace Tenants
             }
             else if (Rand.Value < 0.5)
             {
-                tenantComp.WantedBy.RelationWith(Find.FactionManager.OfPlayer).goodwill -=
+                tenantComp.WantedBy.RelationWith(Find.FactionManager.OfPlayer).baseGoodwill -=
                     SettingsHelper.LatestVersion.HarborPenalty;
-                Find.FactionManager.OfPlayer.RelationWith(tenantComp.WantedBy).goodwill -=
+                Find.FactionManager.OfPlayer.RelationWith(tenantComp.WantedBy).baseGoodwill -=
                     SettingsHelper.LatestVersion.HarborPenalty;
 
                 Messages.Message(

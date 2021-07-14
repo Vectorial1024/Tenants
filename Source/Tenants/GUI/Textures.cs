@@ -13,6 +13,4 @@ namespace Tenants
             ContractIcon = ContentFinder<Texture2D>.Get("UI/Icons/Contract");
         }
     }
-
-
 }

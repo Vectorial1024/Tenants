@@ -26,7 +26,7 @@ namespace Tenants
             return pawn.GetTenantComponent().MayHaul;
         }
 
-        protected override void SetValue(Pawn pawn, bool value)
+        protected override void SetValue(Pawn pawn, bool value, PawnTable table)
         {
             var tenantComp = pawn.GetTenantComponent();
             if (value &&

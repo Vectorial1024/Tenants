@@ -26,7 +26,7 @@ namespace Tenants
             return pawn.GetTenantComponent().MayJoin;
         }
 
-        protected override void SetValue(Pawn pawn, bool value)
+        protected override void SetValue(Pawn pawn, bool value, PawnTable table)
         {
             pawn.GetTenantComponent().MayJoin = value;
         }
