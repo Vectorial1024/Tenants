@@ -1,5 +1,8 @@
 # Changelog for Tenants
 
+1.0.15.0 - Fix for the updated Gastronomy-version
+
+
 1.0.14.0 - Mod updated for 1.3 and passed autotests
 
 

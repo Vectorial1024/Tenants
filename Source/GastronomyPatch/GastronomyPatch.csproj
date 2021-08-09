@@ -11,7 +11,6 @@
   <ItemGroup>
     <PackageReference Include="Krafs.Rimworld.Ref">
        <Version>*</Version> 
-      <!--<Version>1.3.3059-beta</Version>-->
       <ExcludeAssets>runtime</ExcludeAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -21,12 +20,19 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tenants\Tenants.csproj" />
+    <ProjectReference Include="..\Tenants\Tenants.csproj">
+      <Private>false</Private>
+      <CopyLocalSatelliteAssemblies>false</CopyLocalSatelliteAssemblies>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Gastronomy">
-      <HintPath>..\..\..\..\..\..\workshop\content\294100\2279786905\1.2\Assemblies\Gastronomy.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\2279786905\1.3\Assemblies\Gastronomy.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="CashRegister">
+      <HintPath>..\..\..\..\..\..\workshop\content\294100\2506046833\1.3\Assemblies\CashRegister.dll</HintPath>
+      <Private>false</Private>
     </Reference>
   </ItemGroup>
-  <!-- 1.3.3059-beta -->
 </Project>

@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using Gastronomy;
+using Gastronomy.Restaurant;
 using HarmonyLib;
 using Verse;
 
