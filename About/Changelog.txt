@@ -1,5 +1,8 @@
 # Changelog for Tenants
 
+1.0.16.0 - Fixed Vanilla Achievments dependency
+
+
 1.0.15.0 - Fix for the updated Gastronomy-version
 
 
