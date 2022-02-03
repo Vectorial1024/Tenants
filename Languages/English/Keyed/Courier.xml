@@ -4,9 +4,9 @@
   <CourierArrivedMessage>A courier has arrived to the colony. Perhaps {PAWN_pronoun} carries letters and gifts for you?</CourierArrivedMessage>
   <CheckMailBox>Check mail box</CheckMailBox>
   <MailDelivered>A courier has delivered mail.</MailDelivered>
-  <CourierInvite>Send for courier. Cost:{0} silver</CourierInvite>
-  <CourierCost>A sum of {0} has been taken from your gains to cover the courier cost.</CourierCost>
-  <CourierRemainingCost>However, there is still a remaining courier cost of {0}. They will be paid when the next courier arrives.</CourierRemainingCost>
+  <CourierInvite>Send for courier. Cost: {0} silver</CourierInvite>
+  <CourierCost>A sum of {0} silver has been taken from your gains to cover the courier cost.</CourierCost>
+  <CourierRemainingCost>However, there is still a remaining courier cost of {0} silver. They will be settled when the next courier arrives.</CourierRemainingCost>
   <CourierInvited>You have sent a broadcast for a courier. One will be dispatched to your location soon. A future cost of {0} silver will be taken upon arrival.</CourierInvited>
   <CourierDeniedTitle>Courier denied in {0}.</CourierDeniedTitle>
   <CourierDeniedMessage>It seems the scheduled courier for your outpost has been upheld.</CourierDeniedMessage>
