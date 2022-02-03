@@ -66,7 +66,7 @@ namespace Tenants
                 }
             }
 
-            // carefully resolve the courier cost list
+            // carefully resolve the courier cost list to reset courier delivery cost
             // each silver taken as cost must match each remaining courier silver cost
             // at this point, "taken" = how many silver taken as cost, and "cost" = how many cost remaining
             int remainingResolve = taken;
