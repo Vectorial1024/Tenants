@@ -38,6 +38,35 @@ namespace Tenants
             return list.AsEnumerable();
         }
 
+        public void SelfCheck()
+        {
+            // attempts to recover from known inconsistency errors; basically patches itself
+
+            // known consistency error: Items list has many elements but the items are null
+            // this error results in users being able to check mail many times with no obvious feedback
+            // we will fix by removing all null elements
+            // lost silver payments will not be reimbursed!
+            if (Items.Count > 0)
+            {
+                // remove the errored elements by index
+                Stack<int> erroredIndices = new Stack<int>();
+                for (int i = 0; i < Items.Count; i++)
+                {
+                    if (Items[i] == null)
+                    {
+                        erroredIndices.Push(i);
+                    }
+                }
+                while (erroredIndices.Count > 0)
+                {
+                    Items.RemoveAt(erroredIndices.Pop());
+                }
+            }
+
+            // no more known consistency errors
+            return;
+        }
+
         public void EmptyMailBox()
         {
             if (Items.Count <= 0)
