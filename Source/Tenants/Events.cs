@@ -380,6 +380,9 @@ namespace Tenants
             text = text.AdjustedFor(pawn);
             string label = "Captured".Translate() + ": " + pawn.LabelShortCap;
             Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.PositiveEvent, pawn);
+
+            // make the mole guilty
+            pawn.guilt?.Notify_Guilty();
         }
 
         public static void TenantWantToJoin(Pawn pawn)
