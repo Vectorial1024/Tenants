@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <TENN.defaultsettings>Default Settings</TENN.defaultsettings>
+  <TENN.mindaily>Minimum daily tenant contract payment: {0} silver.</TENN.mindaily>
+  <TENN.maxdaily>Maximum daily tenant contract payment: {0} silver.</TENN.maxdaily>
+  <TENN.mindays>Minimum contracted duration: {0} days.</TENN.mindays>
+  <TENN.maxdays>Maximum contracted duration: {0} days.</TENN.maxdays>
+  <TENN.chancesatisified>Chance of contract extension when the tenant is satisfied: {0}%.</TENN.chancesatisified>
+  <TENN.chanceokay>Chance of contract extension when the tenant is okay: {0}%.</TENN.chanceokay>
+  <TENN.chancedissatisfied>Chance of contract extension when the tenant is dissatisfied: {0}%.</TENN.chancedissatisfied>
+  <TENN.harborpenalty>Faction penalty to relations for harboring fugitives: {0}.</TENN.harborpenalty>
+  <TENN.accidentspenalty>Faction penalty to relations for harboring fugitives: {0}.</TENN.accidentspenalty>
+  <TENN.needlevel>Needed level of tenancy happiness to do labor: {0}.</TENN.needlevel>
+  <TENN.curiercost>Basic courier cost: {0} silver.</TENN.curiercost>
+  <TENN.spawnnoweapons>Tenants spawn without weapons.</TENN.spawnnoweapons>
+  <TENN.spawnnoweapons.tooltip>Keep in mind that this removes any weapon when a tenant spawns. Have you given a weapon to a tenant once before, it'll be removed should they leave the map and spawn again somewhere.</TENN.spawnnoweapons.tooltip>
+  <TENN.spawnsimpleclothing>Tenants spawn with simpler clothing.</TENN.spawnsimpleclothing>
+  <TENN.spawnsimpleclothing.tooltip>Upon tenant creation, tenants will spawn with simpler clothing within the selected value range.</TENN.spawnsimpleclothing.tooltip>
+  <TENN.apparelmin>Min total apparel value: {0} silver.</TENN.apparelmin>
+  <TENN.apparelmax>Max total apparel value: {0} silver.</TENN.apparelmax>
+  <TENN.types>Tenant types allowed</TENN.types>
+  <TENN.mole>Mole tenants</TENN.mole>
+  <TENN.mole.tooltip>Some tenants can be moles from hostile factions and will send info for an attack.</TENN.mole.tooltip>
+  <TENN.wanted>Wanted tenants</TENN.wanted>
+  <TENN.wanted.tooltip>Some tenants can be wanted by other factions that will not like the helping of a fugitive.</TENN.wanted.tooltip>
+  <TENN.royalty>Royalty tenants</TENN.royalty>
+  <TENN.royalty.tooltip>Allow tenants with royal titles that needs to be satisfied.</TENN.royalty.tooltip>
+  <TENN.gastronomy>Gastronomy settings</TENN.gastronomy>
+  <TENN.gastronomy.guests>Tennants count as guests</TENN.gastronomy.guests>
+  <TENN.gastronomy.guests.tooltip>If checked Tennants count as guests, if unchecked they count as colonists</TENN.gastronomy.guests.tooltip>
+  <TENN.rgbvalue>RGB value for tenants name: &lt;color=#{0}&gt;Color&lt;/color&gt;</TENN.rgbvalue>
+  <TENN.races>Available races</TENN.races>
+  <TENN.filter>Filter:</TENN.filter>
+  <TENN.version>Installed mod-version: {0}</TENN.version>
+</LanguageData>

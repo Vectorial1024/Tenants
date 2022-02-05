@@ -1,12 +1,11 @@
-﻿namespace Tenants
-{
-    public static class SettingsHelper
-    {
-        public static TenantsSettings LatestVersion;
+﻿namespace Tenants;
 
-        public static void Reset()
-        {
-            LatestVersion.Reset();
-        }
+public static class SettingsHelper
+{
+    public static TenantsSettings LatestVersion;
+
+    public static void Reset()
+    {
+        LatestVersion.Reset();
     }
 }
