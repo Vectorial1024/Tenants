@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Verse;
 using Verse.AI;
 
 namespace Tenants
@@ -19,7 +20,16 @@ namespace Tenants
             checkMailBox.initAction = delegate
             {
                 var building_MailBox = checkMailBox.actor.jobs.curJob.GetTarget(TargetIndex.A).Thing;
-                building_MailBox.GetMailBoxComponent().EmptyMailBox();
+                var mailbox = building_MailBox.GetMailBoxComponent();
+                if (mailbox == null)
+                {
+                    // no mailbox!
+                    Log.Error("Cannot check mail: no Mailbox component in Mailbox building. Please try rebuilding the Mailbox building.");
+                    return;
+                }
+                // has mailbox
+                mailbox.SelfCheck();
+                mailbox.EmptyMailBox();
             };
             yield return checkMailBox;
         }
