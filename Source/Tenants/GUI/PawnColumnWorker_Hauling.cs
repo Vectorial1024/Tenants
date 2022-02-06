@@ -1,53 +1,52 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace Tenants
+namespace Tenants;
+
+public class PawnColumnWorker_Hauling : PawnColumnWorker_Checkbox
 {
-    public class PawnColumnWorker_Hauling : PawnColumnWorker_Checkbox
+    public PawnColumnWorker_Hauling()
     {
-        public PawnColumnWorker_Hauling()
+        foreach (var pawnColumnDef in DefDatabase<PawnColumnDef>.AllDefs)
         {
-            foreach (var pawnColumnDef in DefDatabase<PawnColumnDef>.AllDefs)
+            if (pawnColumnDef.defName == "TenantWorkHauling")
             {
-                if (pawnColumnDef.defName == "TenantWorkHauling")
-                {
-                    pawnColumnDef.label = "Hauling".Translate();
-                }
+                pawnColumnDef.label = "Hauling".Translate();
             }
         }
+    }
 
-        protected override string GetTip(Pawn pawn)
+    protected override string GetTip(Pawn pawn)
+    {
+        return "HaulingTip".Translate();
+    }
+
+    protected override bool GetValue(Pawn pawn)
+    {
+        return pawn.GetTenantComponent().MayHaul;
+    }
+
+    protected override void SetValue(Pawn pawn, bool value, PawnTable table)
+    {
+        var tenantComp = pawn.GetTenantComponent();
+        if (value &&
+            !(pawn.story.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.ManualDumb) ||
+              pawn.story.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.Hauling)))
         {
-            return "HaulingTip".Translate();
+            pawn.workSettings.SetPriority(
+                DefDatabase<WorkTypeDef>.AllDefs.FirstOrFallback(x => x.defName == "Hauling"), 3);
+            tenantComp.MayHaul = true;
         }
-
-        protected override bool GetValue(Pawn pawn)
+        else
         {
-            return pawn.GetTenantComponent().MayHaul;
-        }
-
-        protected override void SetValue(Pawn pawn, bool value, PawnTable table)
-        {
-            var tenantComp = pawn.GetTenantComponent();
-            if (value &&
-                !(pawn.story.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.ManualDumb) ||
-                  pawn.story.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.Hauling)))
+            if (value)
             {
-                pawn.workSettings.SetPriority(
-                    DefDatabase<WorkTypeDef>.AllDefs.FirstOrFallback(x => x.defName == "Hauling"), 3);
-                tenantComp.MayHaul = true;
+                Messages.Message("HaulingError".Translate(pawn.Named("PAWN")), MessageTypeDefOf.NegativeEvent);
             }
-            else
-            {
-                if (value)
-                {
-                    Messages.Message("HaulingError".Translate(pawn.Named("PAWN")), MessageTypeDefOf.NegativeEvent);
-                }
 
-                pawn.workSettings.Disable(
-                    DefDatabase<WorkTypeDef>.AllDefs.FirstOrFallback(x => x.defName == "Hauling"));
-                tenantComp.MayHaul = false;
-            }
+            pawn.workSettings.Disable(
+                DefDatabase<WorkTypeDef>.AllDefs.FirstOrFallback(x => x.defName == "Hauling"));
+            tenantComp.MayHaul = false;
         }
     }
 }

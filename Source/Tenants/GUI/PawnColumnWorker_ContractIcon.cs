@@ -2,41 +2,40 @@
 using UnityEngine;
 using Verse;
 
-namespace Tenants
+namespace Tenants;
+
+[StaticConstructorOnStartup]
+public class PawnColumnWorker_ContractIcon : PawnColumnWorker_Icon
 {
-    [StaticConstructorOnStartup]
-    public class PawnColumnWorker_ContractIcon : PawnColumnWorker_Icon
+    private static readonly Texture2D ContractIcon = Textures.ContractIcon;
+
+    protected override Texture2D GetIconFor(Pawn pawn)
     {
-        private static readonly Texture2D ContractIcon = Textures.ContractIcon;
+        return ContractIcon;
+    }
 
-        protected override Texture2D GetIconFor(Pawn pawn)
+    protected override string GetIconTip(Pawn pawn)
+    {
+        var tenantComp = pawn.GetTenantComponent();
+        if (tenantComp is { IsTenant: false })
         {
-            return ContractIcon;
+            return string.Empty;
         }
 
-        protected override string GetIconTip(Pawn pawn)
+        if (tenantComp == null)
         {
-            var tenantComp = pawn.GetTenantComponent();
-            if (tenantComp != null && !tenantComp.IsTenant)
-            {
-                return string.Empty;
-            }
-
-            if (tenantComp == null)
-            {
-                return string.Empty;
-            }
-
-            string value =
-                "FullDate".Translate(
-                    Find.ActiveLanguageWorker.OrdinalNumber(GenDate.DayOfSeason(tenantComp.ContractEndDate, 0f)),
-                    GenDate.Quadrum(tenantComp.ContractEndDate, 0f).Label(),
-                    GenDate.Year(tenantComp.ContractEndDate, 0f));
-            string a = "ContractEndDate".Translate(value);
-            string b = "ContractPayment".Translate(tenantComp.Payment * tenantComp.ContractLength / 60000);
-            string c = "ContractLength".Translate(tenantComp.ContractLength / 60000);
-            string d = "ContractDaily".Translate(tenantComp.Payment);
-            return a + " \n " + b + " \n " + c + " \n " + d;
+            return string.Empty;
         }
+
+        string value =
+            "FullDate".Translate(
+                Find.ActiveLanguageWorker.OrdinalNumber(GenDate.DayOfSeason(tenantComp.ContractEndDate, 0f)),
+                GenDate.Quadrum(tenantComp.ContractEndDate, 0f).Label(),
+                GenDate.Year(tenantComp.ContractEndDate, 0f));
+        string a = "ContractEndDate".Translate(value);
+        string b = "ContractPayment".Translate(tenantComp.Payment * tenantComp.ContractLength / 60000);
+        string c = "ContractLength".Translate(tenantComp.ContractLength / 60000);
+        string d = "ContractDaily".Translate(tenantComp.Payment);
+        return a + " \n " + b + " \n " + c + " \n " + d;
     }
 }

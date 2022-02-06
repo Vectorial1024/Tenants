@@ -1,12 +1,11 @@
 ﻿using Verse;
 
-namespace Tenants
+namespace Tenants;
+
+public class CompProps_Tenant : CompProperties
 {
-    public class CompProps_Tenant : CompProperties
+    public CompProps_Tenant()
     {
-        public CompProps_Tenant()
-        {
-            compClass = typeof(Tenant);
-        }
+        compClass = typeof(Tenant);
     }
 }

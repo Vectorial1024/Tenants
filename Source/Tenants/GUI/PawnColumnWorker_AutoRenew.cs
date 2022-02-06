@@ -1,34 +1,33 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace Tenants
+namespace Tenants;
+
+public class PawnColumnWorker_AutoRenew : PawnColumnWorker_Checkbox
 {
-    public class PawnColumnWorker_AutoRenew : PawnColumnWorker_Checkbox
+    public PawnColumnWorker_AutoRenew()
     {
-        public PawnColumnWorker_AutoRenew()
+        foreach (var pawnColumnDef in DefDatabase<PawnColumnDef>.AllDefs)
         {
-            foreach (var pawnColumnDef in DefDatabase<PawnColumnDef>.AllDefs)
+            if (pawnColumnDef.defName == "AutoRenew")
             {
-                if (pawnColumnDef.defName == "AutoRenew")
-                {
-                    pawnColumnDef.label = "AutoRenew".Translate();
-                }
+                pawnColumnDef.label = "AutoRenew".Translate();
             }
         }
+    }
 
-        protected override string GetTip(Pawn pawn)
-        {
-            return "AutoRenewTip".Translate();
-        }
+    protected override string GetTip(Pawn pawn)
+    {
+        return "AutoRenewTip".Translate();
+    }
 
-        protected override bool GetValue(Pawn pawn)
-        {
-            return pawn.GetTenantComponent().AutoRenew;
-        }
+    protected override bool GetValue(Pawn pawn)
+    {
+        return pawn.GetTenantComponent().AutoRenew;
+    }
 
-        protected override void SetValue(Pawn pawn, bool value, PawnTable table)
-        {
-            pawn.GetTenantComponent().AutoRenew = value;
-        }
+    protected override void SetValue(Pawn pawn, bool value, PawnTable table)
+    {
+        pawn.GetTenantComponent().AutoRenew = value;
     }
 }

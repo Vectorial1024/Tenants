@@ -1,6 +1,6 @@
 # Tenants
 
-![Image](https://i.imgur.com/WAEzk68.png)
+![Image](https://i.imgur.com/buuPQel.png)
 
 Update of LimeTreeSnakes mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=1854879867
@@ -11,22 +11,13 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1854879867
 - Added options for disabling the Mole and Wanted type tenants
 - Added option for disabling tenants with Royalty needs
 
-![Image](https://i.imgur.com/7Gzt3Rg.png)
+![Image](https://i.imgur.com/pufA0kM.png)
 
-
-[table]
-    [tr]
-        [td]https://invite.gg/Mlie]![Image](https://i.imgur.com/zdzzBrc.png)
-[/td]
-        [td]https://github.com/emipa606/Tenants]![Image](https://i.imgur.com/kTkpTOE.png)
-[/td]
-    [/tr]
-[/table]
 	
 https://steamcommunity.com/sharedfiles/filedetails/?id=2288125657]![Image](https://i.imgur.com/kNldlMg.png)
 
 
-![Image](https://i.imgur.com/NOW7jU1.png)
+![Image](https://i.imgur.com/Z4GOv8H.png)
 
 # With the Royalty expansion, I consider tenants as they are now, Obsolete.
 
@@ -38,7 +29,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2288125657]![Image](https
 
 # Description
 
-This mod was inspired by https://steamcommunity.com/sharedfiles/filedetails/?id=753498552]Orion&apos;s Hospitality and my desire to have longer-term interations with NPC colonists. This is not intended as a replacement for Hospitality; Hospitality enhances the visitor system in Rimworld while Tenants are more like regular colonists that simply have restrictions on what they do. Both mods work together just fine!
+This mod was inspired by https://steamcommunity.com/sharedfiles/filedetails/?id=753498552]Orion's Hospitality and my desire to have longer-term interations with NPC colonists. This is not intended as a replacement for Hospitality; Hospitality enhances the visitor system in Rimworld while Tenants are more like regular colonists that simply have restrictions on what they do. Both mods work together just fine!
  
 Tenants are colonists that you cannot directly control or assign to tasks. So long as you have a regular colonists present, they can randomly offer to make a contract to stay at your colony. If you prove to be a good host, they may ask to stay longer. If you mistreat them, they might leave or worse!
 Couriers are responsible for delivering silver and they spawn randomly. However, they can be called for through the comms console for a small fee.
@@ -55,7 +46,7 @@ Couriers are responsible for delivering silver and they spawn randomly. However,
 - A mailbox(misc) building requirement to have the events spawning.
 - Evicting a tenant will receive in no money paid.
 - Mistreating tenants may result in future consequences.
-- Tenant that don&apos;t have the colony&apos;s best interest in mind.
+- Tenant that don't have the colony's best interest in mind.
 - New Tenant tab to manage your tenants!
 - Customizable mod settings!
 
@@ -104,9 +95,9 @@ Couriers are responsible for delivering silver and they spawn randomly. However,
  
 # License
 
-You may use this code as however you want. However, do let me know and give credits due if you do as I&apos;d love to hear about what you&apos;ve created with it! :)
+You may use this code as however you want. However, do let me know and give credits due if you do as I'd love to hear about what you've created with it! :)
 
-![Image](https://i.imgur.com/Rs6T6cr.png)
+![Image](https://i.imgur.com/PwoNOj4.png)
 
 
 
@@ -116,7 +107,6 @@ You may use this code as however you want. However, do let me know and give cred
 -  For best support, please use the Discord-channel for error-reporting.
 -  Do not report errors by making a discussion-thread, I get no notification of that.
 -  If you have the solution for a problem, please post it to the GitHub repository.
-
 
 
 

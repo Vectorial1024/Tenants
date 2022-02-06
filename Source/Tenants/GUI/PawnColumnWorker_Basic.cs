@@ -1,51 +1,50 @@
 ﻿using RimWorld;
 using Verse;
 
-namespace Tenants
+namespace Tenants;
+
+public class PawnColumnWorker_Basic : PawnColumnWorker_Checkbox
 {
-    public class PawnColumnWorker_Basic : PawnColumnWorker_Checkbox
+    public PawnColumnWorker_Basic()
     {
-        public PawnColumnWorker_Basic()
+        foreach (var pawnColumnDef in DefDatabase<PawnColumnDef>.AllDefs)
         {
-            foreach (var pawnColumnDef in DefDatabase<PawnColumnDef>.AllDefs)
+            if (pawnColumnDef.defName == "TenantWorkBasic")
             {
-                if (pawnColumnDef.defName == "TenantWorkBasic")
-                {
-                    pawnColumnDef.label = "Basic".Translate();
-                }
+                pawnColumnDef.label = "Basic".Translate();
             }
         }
+    }
 
-        protected override string GetTip(Pawn pawn)
+    protected override string GetTip(Pawn pawn)
+    {
+        return "BasicTip".Translate();
+    }
+
+    protected override bool GetValue(Pawn pawn)
+    {
+        return pawn.GetTenantComponent().MayBasic;
+    }
+
+    protected override void SetValue(Pawn pawn, bool value, PawnTable table)
+    {
+        var tenantComp = pawn.GetTenantComponent();
+        if (value && !pawn.story.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.ManualDumb))
         {
-            return "BasicTip".Translate();
+            pawn.workSettings.SetPriority(
+                DefDatabase<WorkTypeDef>.AllDefs.FirstOrFallback(x => x.defName == "BasicWorker"), 3);
+            tenantComp.MayBasic = true;
         }
-
-        protected override bool GetValue(Pawn pawn)
+        else
         {
-            return pawn.GetTenantComponent().MayBasic;
-        }
-
-        protected override void SetValue(Pawn pawn, bool value, PawnTable table)
-        {
-            var tenantComp = pawn.GetTenantComponent();
-            if (value && !pawn.story.DisabledWorkTagsBackstoryAndTraits.OverlapsWithOnAnyWorkType(WorkTags.ManualDumb))
+            if (value)
             {
-                pawn.workSettings.SetPriority(
-                    DefDatabase<WorkTypeDef>.AllDefs.FirstOrFallback(x => x.defName == "BasicWorker"), 3);
-                tenantComp.MayBasic = true;
+                Messages.Message("BasicError".Translate(pawn.Named("PAWN")), MessageTypeDefOf.NegativeEvent);
             }
-            else
-            {
-                if (value)
-                {
-                    Messages.Message("BasicError".Translate(pawn.Named("PAWN")), MessageTypeDefOf.NegativeEvent);
-                }
 
-                pawn.workSettings.Disable(
-                    DefDatabase<WorkTypeDef>.AllDefs.FirstOrFallback(x => x.defName == "BasicWorker"));
-                tenantComp.MayBasic = false;
-            }
+            pawn.workSettings.Disable(
+                DefDatabase<WorkTypeDef>.AllDefs.FirstOrFallback(x => x.defName == "BasicWorker"));
+            tenantComp.MayBasic = false;
         }
     }
 }
