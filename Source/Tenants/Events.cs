@@ -226,8 +226,7 @@ public static class Events
             string letterText = "CourierArrivedMessage".Translate(pawn.Named("PAWN"));
             Find.LetterStack.ReceiveLetter(letterLabel, letterText, LetterDefOf.PositiveEvent, pawn);
             LordMaker.MakeNewLord(pawn.Faction,
-                new LordJob_CourierDeliver(map.listerThings.ThingsOfDef(ThingDefOf.Tenants_MailBox)
-                    .RandomElement()), pawn.Map, new List<Pawn> { pawn });
+                new LordJob_CourierDeliver(box), pawn.Map, new List<Pawn> { pawn });
             return true;
         }
         catch (Exception ex)

@@ -7,12 +7,26 @@ namespace Tenants;
 
 public class MailBox : ThingComp
 {
-    public List<Thing> Items = new List<Thing>();
+    private List<Thing> items;
+
+    public List<Thing> Items
+    {
+        get
+        {
+            if (items == null)
+            {
+                items = new List<Thing>();
+            }
+
+            return items;
+        }
+        set => items = value;
+    }
 
     public override void PostExposeData()
     {
         base.PostExposeData();
-        Scribe_Collections.Look(ref Items, "Items", LookMode.Deep);
+        Scribe_Collections.Look(ref items, "Items", LookMode.Deep);
     }
 
     public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn pawn)
