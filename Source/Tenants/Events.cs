@@ -265,6 +265,9 @@ public static class Events
         pawn.SetFaction(null);
         pawn.GetTenantComponent().IsTenant = false;
         LordMaker.MakeNewLord(pawn.Faction, new LordJob_TenantTheft(), pawn.Map, new List<Pawn> { pawn });
+        
+        // make the thief guilty
+        pawn.guilt?.Notify_Guilty();
     }
 
     public static void TenantDeath(Pawn pawn)
