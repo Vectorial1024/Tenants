@@ -10,6 +10,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=1854879867
 - Removed factions from Tenants and Couriers, so they will never spawn hostile
 - Added options for disabling the Mole and Wanted type tenants
 - Added option for disabling tenants with Royalty needs
+- Fixed couriers, thanks Vectorial1024!
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 

@@ -33,12 +33,7 @@ public class IncidentWorker_TenantCourier : IncidentWorker
         var map = (Map)parms.target;
 
         var building =
-            map?.listerBuildings.allBuildingsColonist.FirstOrDefault(x => x.def == ThingDefOf.Tenants_MailBox);
-        if (building != null)
-        {
-            return Events.Courier((Map)parms.target, building);
-        }
-
-        return false;
+            map?.listerBuildings.allBuildingsColonist.Where(x => x.def == ThingDefOf.Tenants_MailBox);
+        return building != null && Events.Courier((Map)parms.target, building.RandomElement());
     }
 }
